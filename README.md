@@ -3,8 +3,9 @@ This installs or removes applications via steamcmd
 Usage is boringly simple, and limited in scope:
 
 ```
-steamcmd { '90':
+steamcmd { 'The Lab':
   ensure => present,
+  app_id => '450390',
 }
 ```
 
