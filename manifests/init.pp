@@ -1,7 +1,7 @@
 define steamcmd (
   $ensure = 'present',
   $app_id,
-  $steamcmd_path = 'C:/programdata\chocolatey\bin\',
+  $steamcmd_path = 'C:/programdata/chocolatey/bin/',
 ) {
   if $ensure == 'present' {
     exec { "Installing ${title} via SteamCMD":
