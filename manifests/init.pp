@@ -8,6 +8,7 @@ define steamcmd (
       command => "steamcmd.exe +login anonymous +app_update ${app_id} +quit",
       unless  => "steamcmd.exe +login anonymous +apps_installed +quit | findstr ${app_id}",
       path    => $steamcmd_path,
+      timeout => 0,
     }
   } elsif $ensure == 'absent' {
     exec { "Removing ${title} via SteamCMD":
