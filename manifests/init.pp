@@ -7,15 +7,15 @@ define steamcmd (
   if $ensure == 'present' {
     exec { "Installing ${title} via SteamCMD":
       command => "steamcmd.exe +login anonymous +force_install_dir ${install_dir} +app_update ${app_id} +quit",
-      unless  => "if exist \"%${install_dir}%\" exit 1",
-      path    => $steamcmd_path,
+      unless  => "cmd.exe /c if exist \"%${install_dir}%\" exit 1",
+      path    => [$steamcmd_path, 'C:/Windows/System32'],
       timeout => 0,
     }
   } elsif $ensure == 'absent' {
     exec { "Removing ${title} via SteamCMD":
       command => "steamcmd.exe +login anonymous +app_uninstall ${app_id} +quit",
-      unless  => "if exist \"%${install_dir}%\" exit 0",
-      path    => $steamcmd_path,
+      unless  => "cmd.exe /c if exist \"%${install_dir}%\" exit 0",
+      path    => [$steamcmd_path, 'C:/Windows/System32'],
     }
   }
 }
