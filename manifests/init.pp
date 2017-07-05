@@ -22,7 +22,7 @@ define steamcmd (
   if $ensure == 'present' {
     exec { "Installing ${title} via SteamCMD":
       command => "steamcmd.exe +login ${login} +force_install_dir \"${install_dir}\" +app_update ${app_id} +quit",
-      unless  => "cmd.exe /c if /I not exist \"${install_dir}\" exit 1",
+      unless  => "cmd.exe /c if /I not exist \"${install_dir}/steamapps/temp\" exit 1",
       path    => [$steamcmd_path, 'C:/Windows/System32'],
       timeout => 0,
     }
